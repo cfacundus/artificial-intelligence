@@ -1,7 +1,6 @@
 #!/bin/sh
-count=0
-while [ count != 100 ]
+for i in `seq 1 100`
 do
-    count=count+1
+    echo "$i"
     py PlayPoker.py
 done

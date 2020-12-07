@@ -26,7 +26,7 @@ def assignPoints(ranking, index, rankingList, resultsList):
         dif = abs(resultsList[index] - resultsList[second])
         ave = (resultsList[index] + resultsList[second])/2.0
         percDif = dif/ave
-        return 2*secondPoints + int(winScalar * percDif)
+        return secondPoints + winScalar * percDif
     if(ranking == 2):
         return secondPoints
     if(ranking == 3):
@@ -34,8 +34,8 @@ def assignPoints(ranking, index, rankingList, resultsList):
     print("ERROR IN POINTS ASSIGN")
     return -1
     
-
-results = "outputNormal.txt"
+possibleFiles = ["outputNormal.txt", "outputMoreRounds.txt"]
+results = possibleFiles[1]
 file = open(results, "r")
 line = file.readline()
 count = 0
@@ -47,7 +47,6 @@ while line:
         count = count + 1
         resultsList = line.rsplit(" ")
         resultsList = [int(i) for i in resultsList]
-        print(resultsList)
         TChips = assignRanking(0, resultsList)
         RChips = assignRanking(1, resultsList)
         AChips = assignRanking(2, resultsList)
@@ -63,7 +62,7 @@ while line:
         RScore = RScore + TRScore
         AScore = AScore + TAScore
     line = file.readline()
-print("Results of {0} games...".format(count))
-print("Truther finished with an average score of {0} with a winrate of {1}%".format(round((TScore/count), 2), round(100*TWins/float(count), 0)))
-print("Randy finished with an average score of {0} with a winrate of {1}%".format(round((RScore/count), 2), round(100*RWins/float(count), 0)))
-print("AI finished with an average score of {0} with a winrate of {1}%".format(round((AScore/count), 2), round(100*AWins/float(count), 0)))
+print("\nResults of {0} games...\n".format(count))
+print("Truther:  Score: {0}    Winrate: {1}%".format(round((TScore/count), 2), round(100*TWins/float(count), 1)))
+print("Randy:    Score: {0}    Winrate: {1}%".format(round((RScore/count), 2), round(100*RWins/float(count), 1)))
+print("AI:       Score: {0}   Winrate: {1}%".format(round((AScore/count), 2), round(100*AWins/float(count), 1)))
