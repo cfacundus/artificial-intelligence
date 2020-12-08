@@ -1,5 +1,5 @@
-winScalar = 10
-secondPoints = 5
+winScalar = 15
+secondPoints = 10
 losePoints = 0
 TWins = 0
 RWins = 0
@@ -26,7 +26,7 @@ def assignPoints(ranking, index, rankingList, resultsList):
         dif = abs(resultsList[index] - resultsList[second])
         ave = (resultsList[index] + resultsList[second])/2.0
         percDif = dif/ave
-        return secondPoints + winScalar * percDif
+        return 2*secondPoints + winScalar * percDif
     if(ranking == 2):
         return secondPoints
     if(ranking == 3):
@@ -34,8 +34,8 @@ def assignPoints(ranking, index, rankingList, resultsList):
     print("ERROR IN POINTS ASSIGN")
     return -1
     
-possibleFiles = ["outputNormal.txt", "outputMoreRounds.txt"]
-results = possibleFiles[1]
+possibleFiles = ["outputNormal.txt", "outputMoreRounds.txt", "outputHalfSimulations.txt", "outputHalfMaxRaise.txt"]
+results = possibleFiles[3]
 file = open(results, "r")
 line = file.readline()
 count = 0
@@ -65,4 +65,4 @@ while line:
 print("\nResults of {0} games...\n".format(count))
 print("Truther:  Score: {0}    Winrate: {1}%".format(round((TScore/count), 2), round(100*TWins/float(count), 1)))
 print("Randy:    Score: {0}    Winrate: {1}%".format(round((RScore/count), 2), round(100*RWins/float(count), 1)))
-print("AI:       Score: {0}   Winrate: {1}%".format(round((AScore/count), 2), round(100*AWins/float(count), 1)))
+print("AI:       Score: {0}    Winrate: {1}%".format(round((AScore/count), 2), round(100*AWins/float(count), 1)))
